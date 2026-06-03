@@ -50,7 +50,7 @@ export function FairControlCenter({
     return () => clearInterval(timer)
   }, [])
 
-  const supabase = createClient()
+  const supabase = useMemo(() => createClient(), [])
 
   useEffect(() => {
     const fetchTransactionWithWorker = async (newTx: any) => {

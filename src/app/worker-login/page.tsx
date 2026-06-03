@@ -36,7 +36,7 @@ export default function WorkerLoginPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-950 p-6 selection:bg-indigo-500/30 relative">
+    <div className="flex flex-col items-center justify-center min-h-[100dvh] bg-zinc-950 p-6 selection:bg-indigo-500/30 relative">
 
       {/* Geri Dön Butonu */}
       <div className="absolute top-6 left-6 md:top-8 md:left-8">
@@ -46,7 +46,8 @@ export default function WorkerLoginPage() {
       </div>
 
       {/* Card — plain div, no overflow-hidden, no z-index */}
-      <div className="w-full max-w-sm bg-zinc-900/50 backdrop-blur-md border border-zinc-800 shadow-2xl rounded-3xl p-2">
+      <div className="w-full max-w-sm bg-zinc-900/50 backdrop-blur-md border border-zinc-800 shadow-2xl rounded-3xl p-2" style={{ isolation: 'isolate', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
+
         {/* Header */}
         <div className="text-center pb-2 pt-6 px-4">
           <h1 className="text-2xl font-medium text-zinc-100">Sahaya Giriş</h1>

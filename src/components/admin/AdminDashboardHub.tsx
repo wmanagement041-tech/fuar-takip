@@ -85,7 +85,7 @@ function formatMinutes(minutes: number) {
 }
 
 function getFairStatus(fair: any) {
-  return 'live' // Fixed stands are always live
+  return 'live' as const // All stands are always live
 }
 
 // ---------- component ----------
@@ -99,8 +99,6 @@ export function AdminDashboardHub({
   const [workerOpen, setWorkerOpen] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  // Fair Filter & Management
-  const [fairFilter, setFairFilter] = useState<'all' | 'live' | 'upcoming' | 'ended'>('all')
   const [editFair, setEditFair] = useState<any | null>(null)
   const [editFairName, setEditFairName] = useState('')
   const [editFairTemplate, setEditFairTemplate] = useState('')
@@ -245,10 +243,7 @@ export function AdminDashboardHub({
     [workers, workerRevenueFilter]
   )
 
-  const filteredFairs = useMemo(() => {
-    if (fairFilter === 'all') return fairs
-    return fairs.filter(f => getFairStatus(f) === fairFilter)
-  }, [fairs, fairFilter])
+  const filteredFairs = fairs // All stands are always live; no status filtering needed
 
   return (
     <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -296,7 +291,7 @@ export function AdminDashboardHub({
             </div>
           ) : (
             filteredFairs.map((fair) => {
-              const status = getFairStatus(fair)
+              const status = 'live'
               return (
                 <div key={fair.id} className="relative group">
                   <Link href={`/admin/fairs/${fair.id}`}>
@@ -713,7 +708,7 @@ export function AdminDashboardHub({
                   </DialogTitle>
                   <div className="flex gap-5 mt-4">
                     <div>
-                      <p className="text-[10px] text-zinc-500 uppercase tracking-wider">Saatlik Üret</p>
+                      <p className="text-[10px] text-zinc-500 uppercase tracking-wider">Saatlik Ücret</p>
                       <p className="text-base font-medium text-zinc-200">{hw > 0 ? `${hw} ₺/sa` : 'Tanımlanmamış'}</p>
                     </div>
                     <div>
@@ -774,7 +769,7 @@ export function AdminDashboardHub({
               <Input value={editPin} onChange={e => setEditPin(e.target.value)} maxLength={4} required className="rounded-xl bg-zinc-900 border-zinc-800 focus-visible:ring-indigo-500" />
             </div>
             <div className="space-y-2">
-              <Label className="text-zinc-400">Saatlik Üret (₺)</Label>
+              <Label className="text-zinc-400">Saatlik Ücret (₺)</Label>
               <div className="relative">
                 <Input type="number" value={editWage} onChange={e => setEditWage(e.target.value)} placeholder="Örn: 150" className="rounded-xl bg-zinc-900 border-zinc-800 focus-visible:ring-indigo-500 pr-8" />
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 text-sm">₺</span>

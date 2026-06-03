@@ -1,8 +1,6 @@
 import { getActiveAssignment, getTodayStats, getAllActiveStands } from '@/app/actions/worker'
 import { getWorkerSession } from '@/lib/auth'
 import { WorkerDashboard } from '@/components/worker/WorkerDashboard'
-import { workerLogout } from '@/app/actions/auth'
-import { LogOut, AlertCircle, UserCircle2 } from 'lucide-react'
 
 export default async function WorkerPage() {
   const session = await getWorkerSession()
@@ -34,8 +32,8 @@ export default async function WorkerPage() {
       workerName={workerName}
       assignment={assignment}
       availableStands={[]}
-      initialStats={todayData.stats || { totalRevenue: 0, totalCount: 0 }}
-      initialItemCounts={todayData.itemCounts || {}}
+      initialStats={todayData.success ? (todayData.stats ?? { totalRevenue: 0, totalCount: 0 }) : { totalRevenue: 0, totalCount: 0 }}
+      initialItemCounts={todayData.success ? (todayData.itemCounts ?? {}) : {}}
     />
   )
 }

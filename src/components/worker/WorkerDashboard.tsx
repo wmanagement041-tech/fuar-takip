@@ -176,7 +176,7 @@ export function WorkerDashboard({
 
   if (!assignment) {
     return (
-      <div className="min-h-screen bg-zinc-950 flex flex-col selection:bg-indigo-500/30">
+      <div className="min-h-[100dvh] bg-zinc-950 flex flex-col selection:bg-indigo-500/30">
         <header className="bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-900 sticky top-0 z-10 px-4 py-3 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
@@ -277,7 +277,7 @@ export function WorkerDashboard({
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex flex-col selection:bg-indigo-500/30">
+    <div className="min-h-[100dvh] bg-zinc-950 flex flex-col selection:bg-indigo-500/30">
       {/* Header */}
       <header className="bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-900 sticky top-0 z-10 px-4 py-3 flex justify-between items-center">
         <div className="flex items-center gap-3">
@@ -365,11 +365,23 @@ export function WorkerDashboard({
               {/* + Button */}
               <div className="w-12 flex justify-center">
                 <button
+                  onTouchStart={(e) => {
+                    // Prevent ghost click on older iOS (300ms delay)
+                    e.currentTarget.dataset.touched = '1'
+                  }}
                   onTouchEnd={(e) => {
                     e.preventDefault()
-                    if (!isLoading) handleSaleClick(item)
+                    if (!isLoading && e.currentTarget.dataset.touched === '1') {
+                      e.currentTarget.dataset.touched = ''
+                      handleSaleClick(item)
+                    }
                   }}
-                  onClick={() => handleSaleClick(item)}
+                  onClick={(e) => {
+                    // Only fire on true mouse clicks (not ghost clicks from touch)
+                    if (!(e.nativeEvent as any).sourceCapabilities?.firesTouchEvents) {
+                      handleSaleClick(item)
+                    }
+                  }}
                   disabled={isLoading}
                   className={`
                     numpad-btn w-10 h-10 rounded-xl flex items-center justify-center
@@ -407,11 +419,19 @@ export function WorkerDashboard({
               type="button"
               style={{ touchAction: 'manipulation' }}
               className="numpad-btn flex-1 h-16 flex flex-col gap-1 items-center justify-center rounded-2xl bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-700 border border-zinc-700 text-zinc-100 transition-colors"
+              onTouchStart={(e) => { e.currentTarget.dataset.touched = '1' }}
               onTouchEnd={(e) => {
                 e.preventDefault()
-                handleConfirmSale('Nakit')
+                if (e.currentTarget.dataset.touched === '1') {
+                  e.currentTarget.dataset.touched = ''
+                  handleConfirmSale('Nakit')
+                }
               }}
-              onClick={() => handleConfirmSale('Nakit')}
+              onClick={(e) => {
+                if (!(e.nativeEvent as any).sourceCapabilities?.firesTouchEvents) {
+                  handleConfirmSale('Nakit')
+                }
+              }}
             >
               <BanknoteIcon className="w-5 h-5 text-emerald-400" />
               <span>Nakit</span>
@@ -420,11 +440,19 @@ export function WorkerDashboard({
               type="button"
               style={{ touchAction: 'manipulation' }}
               className="numpad-btn flex-1 h-16 flex flex-col gap-1 items-center justify-center rounded-2xl bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-700 border border-zinc-700 text-zinc-100 transition-colors"
+              onTouchStart={(e) => { e.currentTarget.dataset.touched = '1' }}
               onTouchEnd={(e) => {
                 e.preventDefault()
-                handleConfirmSale('IBAN')
+                if (e.currentTarget.dataset.touched === '1') {
+                  e.currentTarget.dataset.touched = ''
+                  handleConfirmSale('IBAN')
+                }
               }}
-              onClick={() => handleConfirmSale('IBAN')}
+              onClick={(e) => {
+                if (!(e.nativeEvent as any).sourceCapabilities?.firesTouchEvents) {
+                  handleConfirmSale('IBAN')
+                }
+              }}
             >
               <CreditCard className="w-5 h-5 text-indigo-400" />
               <span>IBAN</span>

@@ -7,9 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-outfit);
+  --font-heading: var(--font-outfit);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -49,71 +49,135 @@
 }
 
 :root {
+  /* oklch fallbacks for iOS 15 and below (Safari does not support oklch) */
+  --background: hsl(0, 0%, 100%);
   --background: oklch(1 0 0);
+  --foreground: hsl(240, 5%, 10%);
   --foreground: oklch(0.145 0 0);
+  --card: hsl(0, 0%, 100%);
   --card: oklch(1 0 0);
+  --card-foreground: hsl(240, 5%, 10%);
   --card-foreground: oklch(0.145 0 0);
+  --popover: hsl(0, 0%, 100%);
   --popover: oklch(1 0 0);
+  --popover-foreground: hsl(240, 5%, 10%);
   --popover-foreground: oklch(0.145 0 0);
+  --primary: hsl(240, 5%, 15%);
   --primary: oklch(0.205 0 0);
+  --primary-foreground: hsl(0, 0%, 98%);
   --primary-foreground: oklch(0.985 0 0);
+  --secondary: hsl(240, 5%, 96%);
   --secondary: oklch(0.97 0 0);
+  --secondary-foreground: hsl(240, 5%, 15%);
   --secondary-foreground: oklch(0.205 0 0);
+  --muted: hsl(240, 5%, 96%);
   --muted: oklch(0.97 0 0);
+  --muted-foreground: hsl(240, 4%, 46%);
   --muted-foreground: oklch(0.556 0 0);
+  --accent: hsl(240, 5%, 96%);
   --accent: oklch(0.97 0 0);
+  --accent-foreground: hsl(240, 5%, 15%);
   --accent-foreground: oklch(0.205 0 0);
+  --destructive: hsl(0, 72%, 51%);
   --destructive: oklch(0.577 0.245 27.325);
+  --border: hsl(240, 6%, 90%);
   --border: oklch(0.922 0 0);
+  --input: hsl(240, 6%, 90%);
   --input: oklch(0.922 0 0);
+  --ring: hsl(240, 5%, 65%);
   --ring: oklch(0.708 0 0);
+  --chart-1: hsl(240, 5%, 80%);
   --chart-1: oklch(0.87 0 0);
+  --chart-2: hsl(240, 4%, 46%);
   --chart-2: oklch(0.556 0 0);
+  --chart-3: hsl(240, 5%, 34%);
   --chart-3: oklch(0.439 0 0);
+  --chart-4: hsl(240, 5%, 26%);
   --chart-4: oklch(0.371 0 0);
+  --chart-5: hsl(240, 5%, 16%);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
+  --sidebar: hsl(240, 5%, 97%);
   --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: hsl(240, 5%, 10%);
   --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: hsl(240, 5%, 15%);
   --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: hsl(0, 0%, 98%);
   --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: hsl(240, 5%, 96%);
   --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: hsl(240, 5%, 15%);
   --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: hsl(240, 6%, 90%);
   --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: hsl(240, 5%, 65%);
   --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
+  /* oklch fallbacks for iOS 15 and below */
+  --background: hsl(240, 5%, 10%);
   --background: oklch(0.145 0 0);
+  --foreground: hsl(0, 0%, 98%);
   --foreground: oklch(0.985 0 0);
+  --card: hsl(240, 5%, 15%);
   --card: oklch(0.205 0 0);
+  --card-foreground: hsl(0, 0%, 98%);
   --card-foreground: oklch(0.985 0 0);
+  --popover: hsl(240, 5%, 15%);
   --popover: oklch(0.205 0 0);
+  --popover-foreground: hsl(0, 0%, 98%);
   --popover-foreground: oklch(0.985 0 0);
+  --primary: hsl(240, 6%, 90%);
   --primary: oklch(0.922 0 0);
+  --primary-foreground: hsl(240, 5%, 15%);
   --primary-foreground: oklch(0.205 0 0);
+  --secondary: hsl(240, 5%, 16%);
   --secondary: oklch(0.269 0 0);
+  --secondary-foreground: hsl(0, 0%, 98%);
   --secondary-foreground: oklch(0.985 0 0);
+  --muted: hsl(240, 5%, 16%);
   --muted: oklch(0.269 0 0);
+  --muted-foreground: hsl(240, 5%, 65%);
   --muted-foreground: oklch(0.708 0 0);
+  --accent: hsl(240, 5%, 16%);
   --accent: oklch(0.269 0 0);
+  --accent-foreground: hsl(0, 0%, 98%);
   --accent-foreground: oklch(0.985 0 0);
+  --destructive: hsl(0, 62%, 58%);
   --destructive: oklch(0.704 0.191 22.216);
+  --border: rgba(255, 255, 255, 0.10);
   --border: oklch(1 0 0 / 10%);
+  --input: rgba(255, 255, 255, 0.15);
   --input: oklch(1 0 0 / 15%);
+  --ring: hsl(240, 4%, 46%);
   --ring: oklch(0.556 0 0);
+  --chart-1: hsl(240, 5%, 80%);
   --chart-1: oklch(0.87 0 0);
+  --chart-2: hsl(240, 4%, 46%);
   --chart-2: oklch(0.556 0 0);
+  --chart-3: hsl(240, 5%, 34%);
   --chart-3: oklch(0.439 0 0);
+  --chart-4: hsl(240, 5%, 26%);
   --chart-4: oklch(0.371 0 0);
+  --chart-5: hsl(240, 5%, 16%);
   --chart-5: oklch(0.269 0 0);
+  --sidebar: hsl(240, 5%, 15%);
   --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: hsl(0, 0%, 98%);
   --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: hsl(234, 89%, 60%);
   --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: hsl(0, 0%, 98%);
   --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: hsl(240, 5%, 16%);
   --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: hsl(0, 0%, 98%);
   --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: rgba(255, 255, 255, 0.10);
   --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: hsl(240, 4%, 46%);
   --sidebar-ring: oklch(0.556 0 0);
 }
 
@@ -155,6 +219,13 @@ button,
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
+  /* Fix: iOS Safari backdrop-blur parent bug — buttons become untappable.
+     position+z-index lifts the button above the stacking context created
+     by the blurred container. transform: translateZ(0) forces GPU layer. */
+  position: relative;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 /* Fix iOS momentum scroll not triggering click events inside scrollable areas */
@@ -162,4 +233,16 @@ button,
   body {
     -webkit-overflow-scrolling: touch;
   }
+}
+
+/* iOS Safari backdrop-blur stacking context fix:
+   Any container using backdrop-blur/backdrop-filter must be isolated
+   so child buttons are not swallowed by the stacking context. */
+.backdrop-blur-md,
+.backdrop-blur-xl,
+.backdrop-blur-sm,
+[class*="backdrop-blur"] {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  isolation: isolate;
 }
